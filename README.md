@@ -2,6 +2,7 @@
 
 dump redis key or restore redis key
 
+```
 Usage of redis-dump
   -P string
         password
@@ -17,3 +18,4 @@ Usage of redis-dump
         dump or restore file path (default "redis.dump")
   -p int
         redis port (default 6379)
+```
