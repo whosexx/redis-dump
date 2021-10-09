@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/garyburd/redigo/redis"
+	"github.com/gomodule/redigo/redis"
 	"github.com/redmask-hb/GoSimplePrint/goPrint"
 	"github.com/tj/go-spin"
 )
@@ -220,6 +220,7 @@ func main() {
 			fmt.Println("open Write file[%s" + *file + "] err.")
 			return
 		}
+		defer ow.Close()
 
 		StartLoading("ready to write file, please wait.", sp)
 		jerr := json.NewEncoder(ow).Encode(values)
@@ -237,6 +238,7 @@ func main() {
 			fmt.Println("read file err:" + err.Error())
 			return
 		}
+		defer of.Close()
 
 		StartLoading("ready to read file, please wait.", sp)
 		err = json.NewDecoder(of).Decode(&values)
